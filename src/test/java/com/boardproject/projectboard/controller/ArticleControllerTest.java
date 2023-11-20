@@ -22,7 +22,7 @@ class ArticleControllerTest {
         this.mvc = mvc;
     }
 
-    @Disabled("developing")
+//    @Disabled("developing")
     @DisplayName("[view][GET] board detail list page- correct call")
     @Test
     void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception {
