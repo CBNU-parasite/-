@@ -22,11 +22,10 @@ spring:
       hibernate.default_batch_fetch_size: 100
 #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 #    database: mysql
-  h2.console.enabled: true
   sql.init.mode: always
-  data.rest:
-    base-path: /api
-    detection-strategy: annotated
+#  data.rest:
+#    base-path: /api
+#    detection-strategy: annotated
 #  thymeleaf3.decoupled-logic: true
 #  security:
 #    oauth2:
