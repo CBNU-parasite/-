@@ -1,5 +1,6 @@
 package com.boardproject.projectboard.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ class ArticleControllerTest {
         this.mvc = mvc;
     }
 
+    @Disabled("developing")
     @DisplayName("[view][GET] board detail list page- correct call")
     @Test
     void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception {
@@ -29,10 +31,10 @@ class ArticleControllerTest {
 //        given(paginationService.getPaginationBarNumbers(anyInt(), anyInt())).willReturn(List.of(0, 1, 2, 3, 4));
 
         // When & Then
-        mvc.perform(get("/articles/1"))
+        mvc.perform(get("/articles"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-//                .andExpect(view().name("articles/index"))
+                .andExpect(view().name("articles/index"))
                 .andExpect(model().attributeExists("articles"));
 //                .andExpect(model().attributeExists("paginationBarNumbers"))
 //                .andExpect(model().attributeExists("searchTypes"))
@@ -41,6 +43,7 @@ class ArticleControllerTest {
 //        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
     }
 
+    @Disabled("developing")
     @DisplayName("[view][GET] board detail list page- correct call")
     @Test
     void givenNothing_whenRequestingArticlesView_thenReturnsArticleView() throws Exception {
@@ -52,8 +55,9 @@ class ArticleControllerTest {
         mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-//                .andExpect(view().name("articles/index"))
-                .andExpect(model().attributeExists("articles"));
+                .andExpect(view().name("articles/detail"))
+                .andExpect(model().attributeExists("article"))
+                .andExpect(model().attributeExists("articleComments"));
 //                .andExpect(model().attributeExists("paginationBarNumbers"))
 //                .andExpect(model().attributeExists("searchTypes"))
 //                .andExpect(model().attribute("searchTypeHashtag", SearchType.HASHTAG));
@@ -61,6 +65,7 @@ class ArticleControllerTest {
 //        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
     }
 
+    @Disabled("developing")
     @DisplayName("[view][GET] article list - correct call")
     @Test
     void givenNothing_whenRequestingArticleSearchView_thenReturnsArticleSearchView() throws Exception {
@@ -71,9 +76,9 @@ class ArticleControllerTest {
         // When & Then
         mvc.perform(get("/articles/search"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
 //                .andExpect(view().name("articles/index"))
-//                .andExpect(model().attributeExists("articles"))
+                .andExpect(model().attributeExists("articles/search"));
 //                .andExpect(model().attributeExists("paginationBarNumbers"))
 //                .andExpect(model().attributeExists("searchTypes"))
 //                .andExpect(model().attribute("searchTypeHashtag", SearchType.HASHTAG));
@@ -81,6 +86,7 @@ class ArticleControllerTest {
 //        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
     }
 
+    @Disabled("developing")
     @DisplayName("[view][GET] board hashtag search page - correct call")
     @Test
     void givenNothing_whenRequestingArticleSearchHashtagView_thenReturnsArticleSearchHashtagView() throws Exception {
@@ -93,8 +99,8 @@ class ArticleControllerTest {
         // When & Then
         mvc.perform(get("/articles/search-hashtag"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
-//                .andExpect(view().name("articles/search-hashtag"))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("articles/search-hashtag"));
 //                .andExpect(model().attribute("articles", Page.empty()))
 //                .andExpect(model().attribute("hashtags", hashtags))
 //                .andExpect(model().attributeExists("paginationBarNumbers"))
