@@ -27,7 +27,6 @@ import static org.mockito.BDDMockito.*;
 @ExtendWith(MockitoExtension.class)
 class ArticleCommentServiceTest {
     @InjectMocks private ArticleCommentService sut;
-
     @Mock private ArticleRepository articleRepository;
     @Mock private ArticleCommentRepository articleCommentRepository;
 
