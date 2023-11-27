@@ -145,6 +145,21 @@ class ArticleServiceTest {
         then(articleRepository).should().deleteById(articleId);
     }
 
+    @DisplayName("search articles number, return articles number")
+    @Test
+    void givenNothing_whenCountingArticles_thenReturnsArticleCount() {
+        // Given
+        long expected = 0L;
+        given(articleRepository.count()).willReturn(expected);
+
+        // When
+        long actual = sut.getArticleCount();
+
+        // Then
+        assertThat(actual).isEqualTo(expected);
+        then(articleRepository).should().count();
+    }
+
     private UserAccount createUserAccount() {
         return UserAccount.of(
                 "uno",
