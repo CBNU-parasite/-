@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("View Controller - Authentication")
 @Import(SecurityConfig.class)
-@WebMvcTest(AuthControllerTest.EmptyController.class)
+@WebMvcTest(void.class)
 class AuthControllerTest {
 
     private final MockMvc mvc;
@@ -39,7 +40,8 @@ class AuthControllerTest {
         // When & Then
         mvc.perform(get("/login"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andDo(MockMvcResultHandlers.print());
 //        then(articleService).shouldHaveNoInteractions();
 //        then(paginationService).shouldHaveNoInteractions();
     }
