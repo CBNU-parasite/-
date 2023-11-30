@@ -15,7 +15,7 @@ import java.util.List;
 @RepositoryRestResource
 public interface ArticleCommentRepository extends
         JpaRepository<ArticleComment, Long>,
-        QuerydslPredicateExecutor<ArticleComment>, // search function
+        QuerydslPredicateExecutor<ArticleComment>,
         QuerydslBinderCustomizer<QArticleComment> {
 
     List<ArticleComment> findByArticle_Id(Long articleId);
